@@ -4,8 +4,15 @@ const fs = require('fs');
 const PDFDocument = require('pdfkit');
 const { createObjectCsvWriter } = require('csv-writer');
 
+const cacheDir = './.wwebjs_cache';
+if (fs.existsSync(cacheDir)) {
+  fs.rmSync(cacheDir, { recursive: true, force: true });
+  console.log('Cache do navegador (.wwebjs_cache) removido com sucesso.');
+}
+
 const client = new Client({
-  authStrategy: new LocalAuth()
+  authStrategy: new LocalAuth(),
+  puppeteer: { headless: false }
 });
 
 client.on('qr', (qr) => {
@@ -17,8 +24,8 @@ client.on('qr', (qr) => {
 client.on('ready', async () => {
   console.log('WhatsApp conectado com sucesso!\n');
 
-  console.log('Aguardando 15 segundos para o WhatsApp sincronizar o histórico e as mensagens lidas...');
-  await new Promise(resolve => setTimeout(resolve, 15000));
+  console.log('Aguardando 10 segundos para o WhatsApp sincronizar o histórico e as mensagens lidas...');
+  await new Promise(resolve => setTimeout(resolve, 10000));
 
   console.log('\nAnalisando mensagens não lidas...\n');
 

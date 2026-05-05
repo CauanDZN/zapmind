@@ -11,3 +11,6 @@ audios/
 *.ogg
 *.wav
 *.mp4
+
+# Documentos
+relatorio_mensagens.*
