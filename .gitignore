@@ -1,0 +1,13 @@
+node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+npm-debug.log*
+.env
+.DS_Store
+
+# Audios
+audios/
+*.mp3
+*.ogg
+*.wav
+*.mp4
